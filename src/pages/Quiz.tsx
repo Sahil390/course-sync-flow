@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,7 @@ import { Progress } from "@/components/ui/progress";
 import { Clock, Trophy, Target, TrendingUp } from "lucide-react";
 
 const Quiz = () => {
+  const navigate = useNavigate();
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="gradient-secondary rounded-2xl p-8 text-white relative overflow-hidden">
@@ -99,12 +101,19 @@ const Quiz = () => {
                     <>
                       <div className="text-sm text-muted-foreground">Last Score: {quiz.lastScore}%</div>
                       <Progress value={quiz.lastScore} className="h-2" />
-                      <Button variant="outline" size="sm">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => navigate(`/test/${index}`)}
+                      >
                         Retry
                       </Button>
                     </>
                   ) : (
-                    <Button className="gradient-primary border-0">
+                    <Button 
+                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                      onClick={() => navigate(`/test/${index}`)}
+                    >
                       Start Quiz
                     </Button>
                   )}
