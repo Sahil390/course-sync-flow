@@ -11,9 +11,10 @@ import {
 interface NavbarProps {
   onMenuClick?: () => void;
   showMenuButton?: boolean;
+  hideGetStarted?: boolean;
 }
 
-export const Navbar = ({ onMenuClick, showMenuButton = false }: NavbarProps) => {
+export const Navbar = ({ onMenuClick, showMenuButton = false, hideGetStarted = false }: NavbarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="container mx-auto px-4">
@@ -88,11 +89,13 @@ export const Navbar = ({ onMenuClick, showMenuButton = false }: NavbarProps) => 
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <NavLink to="/login">
-              <Button variant="default" className="hidden sm:flex gradient-primary border-0">
-                Get Started
-              </Button>
-            </NavLink>
+            {!hideGetStarted && (
+              <NavLink to="/login">
+                <Button variant="default" className="hidden sm:flex gradient-primary border-0">
+                  Get Started
+                </Button>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>
