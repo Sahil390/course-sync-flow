@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -7,8 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { BookOpen, FileText, Video, Search } from "lucide-react";
 
 const Materials = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBoard, setSelectedBoard] = useState("all");
   const [selectedSubject, setSelectedSubject] = useState("all");
 
   return (
@@ -20,24 +21,13 @@ const Materials = () => {
         <div className="flex flex-col md:flex-row gap-4">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
+          <Input
               placeholder="Search topics, chapters..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10"
             />
           </div>
-          <Select value={selectedBoard} onValueChange={setSelectedBoard}>
-            <SelectTrigger className="w-full md:w-48">
-              <SelectValue placeholder="Select Board" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Boards</SelectItem>
-              <SelectItem value="cbse">CBSE</SelectItem>
-              <SelectItem value="icse">ICSE</SelectItem>
-              <SelectItem value="state">State Board</SelectItem>
-            </SelectContent>
-          </Select>
           <Select value={selectedSubject} onValueChange={setSelectedSubject}>
             <SelectTrigger className="w-full md:w-48">
               <SelectValue placeholder="Select Subject" />
@@ -82,7 +72,12 @@ const Materials = () => {
 
               <div className="flex items-center justify-between pt-2">
                 <span className="text-sm text-muted-foreground">{material.items} items</span>
-                <Button size="sm" variant="ghost" className="text-primary hover:text-primary">
+                <Button 
+                  size="sm" 
+                  variant="ghost" 
+                  className="text-primary hover:text-primary"
+                  onClick={() => navigate(`/materials/${index}`)}
+                >
                   View →
                 </Button>
               </div>
