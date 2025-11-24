@@ -12,6 +12,19 @@ const Materials = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedSubject, setSelectedSubject] = useState("all");
 
+  // Filter materials based on search query and selected subject
+  const filteredMaterials = materials.filter((material) => {
+    const matchesSearch = searchQuery === "" || 
+      material.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      material.chapter.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      material.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    const matchesSubject = selectedSubject === "all" || 
+      material.subject.toLowerCase() === selectedSubject.toLowerCase();
+    
+    return matchesSearch && matchesSubject;
+  });
+
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="flex flex-col gap-4">
@@ -45,7 +58,12 @@ const Materials = () => {
 
       {/* Materials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {materials.map((material, index) => (
+        {filteredMaterials.length === 0 ? (
+          <div className="col-span-full text-center py-12">
+            <p className="text-muted-foreground">No materials found matching your criteria.</p>
+          </div>
+        ) : (
+          filteredMaterials.map((material, index) => (
           <Card key={index} className="glass hover:shadow-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer">
             <CardContent className="p-6 space-y-4">
               <div className="flex items-start justify-between">
@@ -83,7 +101,8 @@ const Materials = () => {
               </div>
             </CardContent>
           </Card>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

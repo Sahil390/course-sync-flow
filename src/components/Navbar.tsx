@@ -82,7 +82,6 @@ export const Navbar = ({ onMenuClick, showMenuButton = false, hideGetStarted = f
                 <DropdownMenuItem>
                   <NavLink to="/profile" className="w-full">Profile</NavLink>
                 </DropdownMenuItem>
-                <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>
                   <NavLink to="/login" className="w-full">Logout</NavLink>
                 </DropdownMenuItem>
