@@ -7,7 +7,7 @@ export const DashboardLayout = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} showMenuButton />
+      <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} showMenuButton hideGetStarted />
       <div className="pt-16">
         <div className="container mx-auto px-4 py-8">
           <Outlet />
