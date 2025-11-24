@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { Clock, Trophy, Target, TrendingUp } from "lucide-react";
+import { Clock, Trophy, Target, TrendingUp, Timer } from "lucide-react";
 
 const Quiz = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6 animate-fade-in">
-      <div className="gradient-secondary rounded-2xl p-8 text-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+      <div className="bg-primary/10 border border-primary/20 rounded-2xl p-8 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
         <div className="relative z-10">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Adaptive Quizzes</h1>
-          <p className="text-white/90 text-lg">Test your knowledge and track your progress</p>
+          <p className="text-muted-foreground text-lg">Test your knowledge and track your progress</p>
         </div>
       </div>
 
@@ -20,8 +23,8 @@ const Quiz = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center">
-                <Trophy className="h-6 w-6 text-white" />
+              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                <Trophy className="h-6 w-6 text-primary" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Quizzes Completed</p>
@@ -48,8 +51,8 @@ const Quiz = () => {
         <Card className="glass">
           <CardContent className="p-6">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center">
-                <TrendingUp className="h-6 w-6 text-white" />
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center">
+                <TrendingUp className="h-6 w-6 text-accent" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Improvement</p>
@@ -60,10 +63,44 @@ const Quiz = () => {
         </Card>
       </div>
 
-      {/* Available Quizzes */}
+      {/* Full-Length Test */}
+      <Card className="glass border-primary/30">
+        <CardContent className="p-6">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div className="flex items-start gap-4">
+              <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center">
+                <Timer className="h-7 w-7 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-1">Full-Length Practice Test</h3>
+                <p className="text-muted-foreground mb-2">Simulate actual exam conditions with 30-minute timer</p>
+                <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    30 minutes (strict)
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Target className="h-4 w-4" />
+                    50 questions
+                  </div>
+                  <Badge variant="destructive">Timed Test</Badge>
+                </div>
+              </div>
+            </div>
+            <Button 
+              className="bg-primary hover:bg-primary/90"
+              onClick={() => navigate("/quiz/test")}
+            >
+              Start Test
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Topic-wise Tests */}
       <Card className="glass">
         <CardHeader>
-          <CardTitle>Available Quizzes</CardTitle>
+          <CardTitle>Topic-wise Tests</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           {quizzes.map((quiz, index) => (
@@ -104,7 +141,10 @@ const Quiz = () => {
                       </Button>
                     </>
                   ) : (
-                    <Button className="gradient-primary border-0">
+                    <Button 
+                      className="bg-primary hover:bg-primary/90"
+                      onClick={() => navigate("/quiz/test")}
+                    >
                       Start Quiz
                     </Button>
                   )}
