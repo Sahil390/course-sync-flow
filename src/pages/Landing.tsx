@@ -1,11 +1,13 @@
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Navbar } from "@/components/Navbar";
 import { BookOpen, Brain, Trophy, Users, Zap, Target } from "lucide-react";
 
 const Landing = () => {
   return (
     <div className="min-h-screen">
+      <Navbar showUserControls={false} />
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5"></div>

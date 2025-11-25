@@ -12,9 +12,10 @@ interface NavbarProps {
   onMenuClick?: () => void;
   showMenuButton?: boolean;
   hideGetStarted?: boolean;
+  showUserControls?: boolean;
 }
 
-export const Navbar = ({ onMenuClick, showMenuButton = false, hideGetStarted = false }: NavbarProps) => {
+export const Navbar = ({ onMenuClick, showMenuButton = false, hideGetStarted = false, showUserControls = true }: NavbarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50">
       <div className="container mx-auto px-4">
@@ -67,26 +68,30 @@ export const Navbar = ({ onMenuClick, showMenuButton = false, hideGetStarted = f
           </div>
 
           <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" className="relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full"></span>
-            </Button>
-            
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <User className="h-5 w-5" />
+            {showUserControls && (
+              <>
+                <Button variant="ghost" size="icon" className="relative">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full"></span>
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                <DropdownMenuItem>
-                  <NavLink to="/profile" className="w-full">Profile</NavLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <NavLink to="/login" className="w-full">Logout</NavLink>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <User className="h-5 w-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem>
+                      <NavLink to="/profile" className="w-full">Profile</NavLink>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <NavLink to="/login" className="w-full">Logout</NavLink>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            )}
 
             {!hideGetStarted && (
               <NavLink to="/login">
