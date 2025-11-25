@@ -146,6 +146,7 @@ const Quiz = () => {
 };
 
 const quizzes = [
+  // Mathematics
   {
     title: "Algebra Mastery Test",
     subject: "Mathematics",
@@ -157,6 +158,46 @@ const quizzes = [
     lastScore: 88,
   },
   {
+    title: "Trigonometry Complete",
+    subject: "Mathematics",
+    topics: 4,
+    difficulty: "Medium",
+    duration: "35 min",
+    questions: 25,
+    completed: true,
+    lastScore: 82,
+  },
+  {
+    title: "Coordinate Geometry",
+    subject: "Mathematics",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 20,
+    completed: false,
+  },
+  {
+    title: "Polynomials & Quadratics",
+    subject: "Mathematics",
+    topics: 4,
+    difficulty: "Hard",
+    duration: "40 min",
+    questions: 28,
+    completed: false,
+  },
+  {
+    title: "Statistics & Probability",
+    subject: "Mathematics",
+    topics: 3,
+    difficulty: "Easy",
+    duration: "25 min",
+    questions: 18,
+    completed: true,
+    lastScore: 90,
+  },
+  
+  // Physics
+  {
     title: "Thermodynamics Quiz",
     subject: "Physics",
     topics: 3,
@@ -165,6 +206,46 @@ const quizzes = [
     questions: 20,
     completed: false,
   },
+  {
+    title: "Newton's Laws & Motion",
+    subject: "Physics",
+    topics: 4,
+    difficulty: "Hard",
+    duration: "40 min",
+    questions: 25,
+    completed: true,
+    lastScore: 75,
+  },
+  {
+    title: "Electricity & Magnetism",
+    subject: "Physics",
+    topics: 5,
+    difficulty: "Hard",
+    duration: "45 min",
+    questions: 30,
+    completed: false,
+  },
+  {
+    title: "Light & Optics",
+    subject: "Physics",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 22,
+    completed: true,
+    lastScore: 85,
+  },
+  {
+    title: "Work, Energy & Power",
+    subject: "Physics",
+    topics: 2,
+    difficulty: "Easy",
+    duration: "25 min",
+    questions: 15,
+    completed: false,
+  },
+  
+  // Chemistry
   {
     title: "Organic Reactions",
     subject: "Chemistry",
@@ -176,6 +257,45 @@ const quizzes = [
     lastScore: 92,
   },
   {
+    title: "Chemical Bonding",
+    subject: "Chemistry",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 20,
+    completed: false,
+  },
+  {
+    title: "Acids, Bases & Salts",
+    subject: "Chemistry",
+    topics: 2,
+    difficulty: "Easy",
+    duration: "20 min",
+    questions: 15,
+    completed: true,
+    lastScore: 88,
+  },
+  {
+    title: "Periodic Table & Trends",
+    subject: "Chemistry",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "35 min",
+    questions: 23,
+    completed: false,
+  },
+  {
+    title: "Carbon & Compounds",
+    subject: "Chemistry",
+    topics: 5,
+    difficulty: "Hard",
+    duration: "45 min",
+    questions: 30,
+    completed: false,
+  },
+  
+  // Biology
+  {
     title: "Cell Biology Basics",
     subject: "Biology",
     topics: 2,
@@ -184,6 +304,105 @@ const quizzes = [
     questions: 15,
     completed: false,
   },
+  {
+    title: "Life Processes",
+    subject: "Biology",
+    topics: 4,
+    difficulty: "Medium",
+    duration: "35 min",
+    questions: 25,
+    completed: true,
+    lastScore: 86,
+  },
+  {
+    title: "Heredity & Evolution",
+    subject: "Biology",
+    topics: 3,
+    difficulty: "Hard",
+    duration: "40 min",
+    questions: 28,
+    completed: false,
+  },
+  {
+    title: "Human Reproduction",
+    subject: "Biology",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 20,
+    completed: true,
+    lastScore: 91,
+  },
+  {
+    title: "Control & Coordination",
+    subject: "Biology",
+    topics: 4,
+    difficulty: "Medium",
+    duration: "35 min",
+    questions: 24,
+    completed: false,
+  },
+  
+  // English
+  {
+    title: "Literature Comprehension",
+    subject: "English",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 20,
+    completed: true,
+    lastScore: 84,
+  },
+  {
+    title: "Grammar & Writing",
+    subject: "English",
+    topics: 5,
+    difficulty: "Hard",
+    duration: "40 min",
+    questions: 30,
+    completed: false,
+  },
+  
+  // Social Science
+  {
+    title: "History - Freedom Struggle",
+    subject: "Social Science",
+    topics: 4,
+    difficulty: "Medium",
+    duration: "35 min",
+    questions: 25,
+    completed: true,
+    lastScore: 80,
+  },
+  {
+    title: "Geography - Resources",
+    subject: "Social Science",
+    topics: 3,
+    difficulty: "Easy",
+    duration: "25 min",
+    questions: 18,
+    completed: false,
+  },
+  {
+    title: "Political Science - Democracy",
+    subject: "Social Science",
+    topics: 3,
+    difficulty: "Medium",
+    duration: "30 min",
+    questions: 22,
+    completed: false,
+  },
+  {
+    title: "Economics - Development",
+    subject: "Social Science",
+    topics: 2,
+    difficulty: "Easy",
+    duration: "20 min",
+    questions: 15,
+    completed: true,
+    lastScore: 87,
+  },
 ];
 
 const subjects = [
@@ -191,6 +410,8 @@ const subjects = [
   { name: "Physics", score: 78 },
   { name: "Chemistry", score: 92 },
   { name: "Biology", score: 88 },
+  { name: "English", score: 84 },
+  { name: "Social Science", score: 81 },
 ];
 
 export default Quiz;
