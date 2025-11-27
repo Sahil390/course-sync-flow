@@ -3,8 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Trophy, Zap, Target, BookOpen, Award } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Profile = () => {
+  const { profile } = useAuth();
+  const fullName = profile?.full_name || 'Student';
+  const initials = fullName
+    .split(' ')
+    .map(n => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Profile Header */}
@@ -13,14 +23,14 @@ const Profile = () => {
         <CardContent className="p-8 relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <Avatar className="h-24 w-24 border-4 border-white/20">
-              <AvatarFallback className="text-3xl bg-white/20">SK</AvatarFallback>
+              <AvatarFallback className="text-3xl bg-white/20">{initials}</AvatarFallback>
             </Avatar>
             <div className="text-center md:text-left flex-1">
-              <h1 className="text-3xl font-bold mb-2">Sahil Kumar</h1>
+              <h1 className="text-3xl font-bold mb-2">{fullName}</h1>
               <p className="text-white/90 mb-4">Class 12 • CBSE Board</p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 <Badge variant="secondary" className="bg-white/20 text-white border-0">
-                  Student
+                  {profile?.role === 'student' ? 'Student' : 'Teacher'}
                 </Badge>
                 <Badge variant="secondary" className="bg-white/20 text-white border-0">
                   Pro Member
