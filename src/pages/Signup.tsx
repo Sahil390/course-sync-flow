@@ -7,21 +7,40 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/hooks/useAuth";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState<"student" | "teacher">("student");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signUp } = useAuth();
 
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+
+    const { error } = await signUp(email, password, name, role);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create account. Please try again.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     toast({
       title: "Account Created!",
       description: "Welcome to StudySync. Let's start learning!",
     });
+    
+    setIsLoading(false);
     navigate("/dashboard");
   };
 
@@ -74,7 +93,7 @@ const Signup = () => {
             </div>
             <div className="space-y-2">
               <Label htmlFor="role">I am a</Label>
-              <Select value={role} onValueChange={setRole}>
+              <Select value={role} onValueChange={(value) => setRole(value as "student" | "teacher")}>
                 <SelectTrigger>
                   <SelectValue />
                 </SelectTrigger>
@@ -84,8 +103,8 @@ const Signup = () => {
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full gradient-primary border-0">
-              Create Account
+            <Button type="submit" className="w-full gradient-primary border-0" disabled={isLoading}>
+              {isLoading ? "Creating Account..." : "Create Account"}
             </Button>
           </form>
 

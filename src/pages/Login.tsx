@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,16 +11,39 @@ import { useToast } from "@/hooks/use-toast";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { signIn, user } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  useEffect(() => {
+    if (user) {
+      navigate("/dashboard");
+    }
+  }, [user, navigate]);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate login
+    setIsLoading(true);
+
+    const { error } = await signIn(email, password);
+
+    if (error) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to sign in. Please check your credentials.",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
     toast({
       title: "Login Successful!",
       description: "Welcome back to StudySync",
     });
+    
+    setIsLoading(false);
     navigate("/dashboard");
   };
 
@@ -59,8 +83,8 @@ const Login = () => {
                 required
               />
             </div>
-            <Button type="submit" className="w-full gradient-primary border-0">
-              Sign In
+            <Button type="submit" className="w-full gradient-primary border-0" disabled={isLoading}>
+              {isLoading ? "Signing In..." : "Sign In"}
             </Button>
           </form>
 

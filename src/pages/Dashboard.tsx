@@ -4,15 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { BookOpen, Trophy, Zap, Clock, TrendingUp, Target } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { useAuth } from "@/hooks/useAuth";
 
 const Dashboard = () => {
+  const { profile } = useAuth();
+  const firstName = profile?.full_name?.split(' ')[0] || 'Student';
+
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Welcome Section */}
       <div className="gradient-primary rounded-2xl p-8 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
         <div className="relative z-10">
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome back, Sahil! 👋</h1>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Welcome back, {firstName}! 👋</h1>
           <p className="text-white/90 text-lg">You're making great progress. Keep it up!</p>
         </div>
       </div>
